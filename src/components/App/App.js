@@ -8,6 +8,8 @@ import HostelsList from "../Hostels/HostelsList";
 import AddReview from "../Hostels/AddReview"
 import Itineraries from "../Itineraries/Itineraries";
 import ItinerariesList from "../Itineraries/ItinerariesList";
+import AddItinerary from "../Itineraries/AddItinerary";
+import AddStage from "../Itineraries/AddStage";
 
 function App() {
     //Get all hostels
@@ -46,7 +48,7 @@ function App() {
   // GET -- All itineraries
   const [itinerariesList, setItinerariesList] = useState([
     {
-      user: "",
+      user: "User",
       startdate: "",
       stages: [
         {
@@ -91,8 +93,10 @@ function App() {
         <Route path=":id" element={<HostelDisplay />}/>
         <Route path=":id/reviews" element={<AddReview />}/>
       </Route>
-      <Route path="/itineraries" element={<Itineraries />}>
+      <Route path="itineraries" element={<Itineraries />}>
         <Route index element={<ItinerariesList itineraries={itinerariesList}/>}/>
+        <Route path="add" element={<AddItinerary />}/>
+        <Route path="new" element={<AddStage />}/>
       </Route>
       <Route path="*" element={
       <main style={{ padding: "1rem" }}>
