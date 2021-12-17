@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import Button from "react-bootstrap/Button";
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams,  useNavigate } from 'react-router-dom';
 
 export default function AddReview() {
     let params = useParams();
-   
+    let id = parseInt(params.id, 10);
+    let navigate = useNavigate();
    
     console.log(params);
 
     const [reviewerIn, setReviewer] = useState("");
     const [reviewIn, setReview] = useState("");
-    const baseURL = "http://localhost:3000/hostels/review/" + params.id;
+    const baseURL = "http://localhost:3000/hostels/review/" + id;
     const rHeaders = {
         "Content-Type":"application/json",
         'Accept':'application/json',
@@ -27,6 +28,7 @@ export default function AddReview() {
             headers: rHeaders,
             body: JSON.stringify(query),
             });
+            navigate("/hostels/" + params.id);
         };
     
         const handleReviewer =  (e) => {
@@ -52,8 +54,10 @@ export default function AddReview() {
                     <input type="text" onChange={handleReview} value={reviewIn}/>
                 </label>
                 <br/>
-               <Button onClick={addReview}>
-                   <Link to="/">Add Review</Link> 
+                <Button 
+                variant='secondary' 
+                onClick={() => {addReview()}}>
+                Post Review
                 </Button>
                 </form>
             </div>

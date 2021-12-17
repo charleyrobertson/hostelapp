@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Reviews from './Reviews';
-import { useNavigate, useParams } from "react-router-dom";
-import Rating from 'react-rating';
+import { useNavigate, useParams, Link } from "react-router-dom";
+import Button from "react-bootstrap/Button"
 import Ratings from './Ratings';
 
 export default function HostelDisplay()
 {
     let params = useParams();
+    let navigate = useNavigate();
     let id = parseInt(params.id, 10);
     let fetchURL = "http://localhost:3000/hostels/" + id;
     
@@ -45,6 +46,13 @@ export default function HostelDisplay()
     return(
         <div>
             <h1>Hostel Information</h1>
+            <Button 
+              variant='secondary' 
+              onClick={() => {navigate("/hostels")
+              }}>
+              Back
+              </Button>
+
              <div> 
                  <h2>{hostel.name}</h2>
  
@@ -70,7 +78,18 @@ export default function HostelDisplay()
                   <h3>Reviews</h3>
                    <Reviews reviews={hostel.reviews}/> 
                 </div>
-        </div>
+
+                <div>
+                  <Link to={`/hostels/${hostel.id}/reviews`}>
+                  <Button 
+                  variant='secondary' >
+                  Add Review
+                  </Button>
+                  </Link>
+                  
+                </div>
+
+          </div>
     
                     
         </div>

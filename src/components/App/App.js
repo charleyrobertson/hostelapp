@@ -60,8 +60,8 @@ function App() {
       <Route path="/" element={<Home />}/>
       <Route path="hostels" element={<Hostels />}>
         <Route index element={<HostelsList hostels={hostelsList} />}></Route>
-        <Route path=":id" element={<HostelDisplay />}></Route>
-        <Route path=":id/reviews" element={<AddReview />}></Route>
+        <Route path=":id" element={<HostelDisplay />}/>
+        <Route path=":id/reviews" element={<AddReview />}/>
       </Route>
       <Route path="*" element={
       <main style={{ padding: "1rem" }}>
