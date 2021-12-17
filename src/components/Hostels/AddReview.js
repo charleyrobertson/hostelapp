@@ -35,8 +35,6 @@ export default function AddReview() {
                 navigate("/hostels/" + params.id);
             };
         }
-
-        
     
         const handleReviewer =  (e) => {
             setReviewer(e.currentTarget.value);
