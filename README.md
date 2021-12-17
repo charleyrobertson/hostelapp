@@ -7,7 +7,7 @@ Open VS Code and then open a new terminal. Follow the instructions below to run 
 To use the application, we will first clone the GitHub respository, then you need to install the dependancies then run the applicaiton on the localhost. The following commands will do this for you:
 
 ````
-git clone https://github.com/charleyrobertson.hostelnc500.git
+git clone https://github.com/charleyrobertson/hostelapp.git
 
 npm install
 
