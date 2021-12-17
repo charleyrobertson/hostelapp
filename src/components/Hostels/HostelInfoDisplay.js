@@ -44,7 +44,7 @@ export default function HostelDisplay()
       
 
     return(
-        <div>
+        <div className='text-center'>
             <h1>Hostel Information</h1>
             <Button 
               variant='secondary' 

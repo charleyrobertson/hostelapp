@@ -5,9 +5,10 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
 export default function Home() {
+
     return (
         <div>
-        <div>
+        <div className="text-center">
             <h2>Home</h2>
             <h4>Please refer to the small guide located on this page to find out how to use this application.</h4>
         </div>
@@ -16,7 +17,7 @@ export default function Home() {
             <Container class="container-fluid">
             <Row xs={1} md={2} className="g-4">
                 <Col>
-                <Card>
+                <Card className="text-center">
                     <Card.Header>
                         Finding a Hostel
                     </Card.Header>
@@ -34,7 +35,7 @@ export default function Home() {
                 </Card>
                 </Col>
                 <Col>
-                <Card>
+                <Card className="text-center">
                     <Card.Header>
                         Creating an Itinerary
                     </Card.Header>

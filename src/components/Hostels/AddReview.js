@@ -41,7 +41,7 @@ export default function AddReview() {
 
 
         return (
-            <div>
+            <div className='text-center'>
                 <h3>Add a review</h3>
                 <form>
                 <label>
