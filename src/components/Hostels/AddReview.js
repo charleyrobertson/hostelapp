@@ -18,18 +18,25 @@ export default function AddReview() {
     };
     
     const addReview = async () => {
-        const query = {
+        const rev = {
             reviewer: reviewerIn,
             review: reviewIn
         }
     
-        await fetch(baseURL, {
-            method: "POST",
-            headers: rHeaders,
-            body: JSON.stringify(query),
-            });
-            navigate("/hostels/" + params.id);
-        };
+        //Ensure the fields have been filled with information before submit
+        if(rev.review.length <= 0 || rev.reviewer.length <= 0) {
+            alert("Please fill out both fields before submission.")
+        } else {
+            await fetch(baseURL, {
+                method: "POST",
+                headers: rHeaders,
+                body: JSON.stringify(rev),
+                });
+                navigate("/hostels/" + params.id);
+            };
+        }
+
+        
     
         const handleReviewer =  (e) => {
             setReviewer(e.currentTarget.value);
