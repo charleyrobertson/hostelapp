@@ -1,45 +1,46 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Reviews from './Reviews';
 import { useNavigate, useParams } from "react-router-dom";
+import Rating from 'react-rating';
+import Ratings from './Ratings';
 
 export default function HostelDisplay()
 {
     let params = useParams();
     let id = parseInt(params.id, 10);
     let fetchURL = "http://localhost:3000/hostels/" + id;
-    console.log(fetchURL);
+    
+    const [hostel, setHostel] = useState({
+      id: "",
+      name: "",
+      address: "",
+      postcode: "",
+      phone: "",
+      email: "",
+      description: "",
+      location: { lat: 0, long: 0 },
+      ratings: [],
+      reviews: [
+        {
+          reviewer: "",
+          review: "",
+        },
+      ],
+    });
 
-    const fetchHostel = useCallback(() => {
-        fetch(fetchURL)
+    const fetchData = useCallback(() => {
+      fetch(fetchURL)
         .then((res) => res.json())
         .then((data) => {
-            setHostel(data[0]);
-        })
-    }, [fetchURL])
-
-    const [hostel, setHostel] = useState([
-        {
-          id: "",
-          name: "",
-          address: "",
-          postcode: "",
-          phone: "",
-          email: "",
-          description: "",
-          location: { lat: 0, long: 0 },
-          ratings: [],
-          reviews: [
-            {
-              reviewer: "",
-              review: "",
-            },
-          ],
-        },
-      ]);
+          const hosteldata = data[0];
+          setHostel(hosteldata);
+        });
+    }, [fetchURL]);
   
-      useEffect(() => {
-        fetchHostel(); 
-      }, [fetchHostel]);  
+    useEffect(() => {
+      fetchData();
+    }, [fetchData]);
+      
 
     return(
         <div>
@@ -58,13 +59,20 @@ export default function HostelDisplay()
                     <h3>Hostel Description</h3>
                     <p>{hostel.description}</p>
                 </div>
-            </div>
-            
+
                 <div>
-                    <div>
-                     <Reviews hostelIn={hostel} /> 
-                    </div>  
-                </div> 
+                  <h3>Average Rating</h3>
+                   <Ratings ratings={hostel.ratings} />  
+                </div>
+                    
+
+                <div>
+                  <h3>Reviews</h3>
+                   <Reviews reviews={hostel.reviews}/> 
+                </div>
+        </div>
+    
+                    
         </div>
     )
 }
