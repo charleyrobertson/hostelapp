@@ -18,6 +18,7 @@ export default function HostelsList({hostels}) {
           <div>
                 <h2>Hostels</h2>
                 <h5>Please select a hostel from the page or search for a specific hostel.</h5>
+                <br/>
                 <input 
                 value={searchParams.get("filter") || ""}
                 onChange={event => {
